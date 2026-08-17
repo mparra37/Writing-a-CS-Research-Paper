@@ -31,15 +31,12 @@ A practical, end-to-end guide: from finding a contribution to surviving the rebu
 
 ## 1. How CS publishing actually works
 
-Computer science is unusual among academic fields: **top-tier conferences are the primary venue, not journals.** A paper at OSDI, NeurIPS, POPL, or CHI carries more weight than most journal articles. This has practical consequences for how you work.
+Computer science is unusual among academic fields: **top-tier conferences are the primary venue, not journals.** A paper at NeurIPS or CHI carries more weight than most journal articles. This has practical consequences for how you work.
 
 **Hard deadlines.** Conferences have fixed submission dates, typically once or twice a year. You are not submitting when the work is ready; you are making the work ready for a date. Plan accordingly.
 
 **Full peer review of the full paper.** Unlike fields where conferences take abstracts, CS conferences review complete papers, usually 8–14 pages plus references and appendices. Acceptance rates at top venues run roughly 15–25%.
 
-**Page limits are strict and enforced.** Over by a line and your paper may be desk-rejected without review. Write to the limit from the start.
-
-**Rebuttal / author-response phase.** Many venues let you respond to reviews before the decision. This is a real opportunity — see §16.
 
 ### Knowing your venue tier
 
@@ -48,11 +45,10 @@ Not everything belongs at a flagship venue. The landscape roughly:
 | Tier | Examples | When to aim here |
 |---|---|---|
 | Flagship conferences | SOSP/OSDI, SIGCOMM, NeurIPS/ICML/ICLR, POPL/PLDI, CCS/S&P/USENIX Security, CHI, SIGMOD/VLDB, ICSE, STOC/FOCS | Substantial, surprising, well-evaluated contribution |
-| Strong specialized conferences | EuroSys, NSDI, ASPLOS, EMNLP, ECOOP, ASE, FSE, IMC, UIST | Solid contribution within a subfield |
 | Workshops | Co-located with the above (HotOS, HotNets, and many others) | Early-stage ideas, position papers, 4–6 pages, fast feedback |
 | Journals | TOCS, TON, JMLR, TSE, TOPLAS, PACMPL | Extended versions, long-form theory, or fields where journals dominate |
 
-**Advice for a first paper:** a workshop is an excellent, low-risk place to start. Present the idea, get feedback from people who work on it, then build toward the full conference submission. Workshop publication generally does not preclude later full publication, but check the specific venue's policy.
+**Advice for a first paper:** a workshop is an excellent, low-risk place to start. Present the idea, get feedback from people who work on it, then build toward the full conference submission. 
 
 ### Reading the call for papers
 
@@ -549,73 +545,8 @@ Get this wrong and the paper is desk-rejected.
 
 ---
 
-## 14. Working backwards from a deadline
 
-A workable schedule for a conference deadline at day 0:
-
-| When | What |
-|---|---|
-| **D−90** | Freeze scope. Decide what is in the paper and what is not. Draft the one-sentence claim. |
-| **D−75** | Design all experiments. Sketch every figure on paper. Write the evaluation questions. |
-| **D−60** | Finish core implementation. Begin running experiments. |
-| **D−45** | Draft Method/Design and Implementation sections. Experiments running in parallel. |
-| **D−30** | Main results in hand. Draft Evaluation. Write Related Work. |
-| **D−21** | Complete draft including Introduction. This is when you *should* feel it is ugly. |
-| **D−14** | Internal review: send to advisor and 2–3 colleagues. Run remaining ablations. |
-| **D−10** | Register the abstract if there is an early abstract deadline. **Check this date now.** |
-| **D−7** | Revise on feedback. Rewrite the introduction. Polish figures. |
-| **D−3** | Full read-through aloud. Fix references. Check page limit and formatting. |
-| **D−2** | Proofread. Verify anonymization. Compile with the exact venue template. Do a practice submission upload. |
-| **D−1** | Submit. Seriously — submit a day early. |
-| **D−0** | Submission sites crash under load in the final hours. Do not be there. |
-
-The most common cause of a bad paper is not a bad idea; it is running experiments until three days before the deadline and writing the paper in a panic.
-
----
-
-## 15. Submission checklist
-
-**Content**
-- [ ] Abstract has concrete numbers
-- [ ] Introduction has an explicit contributions list with section pointers
-- [ ] Every claim in the intro is supported by a specific experiment or proof
-- [ ] Related work is thematic, fair, and includes the obvious competitors
-- [ ] Limitations stated honestly
-- [ ] Conclusion introduces nothing new
-
-**Evaluation**
-- [ ] Strongest baseline included and tuned
-- [ ] Multiple runs, variance reported, number of trials stated
-- [ ] Ablations for every claimed component
-- [ ] Overheads reported
-- [ ] Hardware and software configuration fully described
-- [ ] At least one experiment showing where the approach does not work
-
-**Presentation**
-- [ ] Every figure has a self-contained caption and labeled axes with units
-- [ ] Figures legible in grayscale and at print size
-- [ ] Consistent terminology throughout
-- [ ] All acronyms expanded at first use
-- [ ] No broken `??` cross-references or `[?]` citations
-- [ ] Spell-checked (and grammar-checked)
-
-**Formatting**
-- [ ] Correct venue template, unmodified
-- [ ] Within page limit under the venue's counting rules
-- [ ] Bibliography complete and consistent; published versions cited over preprints
-- [ ] Anonymized (if double-blind), including metadata, URLs, and self-citations
-- [ ] PDF fonts embedded; compiles from a clean checkout
-
-**Process**
-- [ ] Abstract registered by the earlier deadline (if applicable)
-- [ ] All co-authors have read and approved the final version
-- [ ] Ethics/IRB approval documented if human subjects involved
-- [ ] Conflicts of interest declared in the submission system
-- [ ] Artifact prepared and anonymously accessible (if submitting to AE)
-
----
-
-## 16. Reviews and rebuttals
+## 14. Reviews and rebuttals
 
 ### Reading reviews
 
@@ -651,7 +582,7 @@ Space is tight (often 500–1000 words). Priorities:
 
 ---
 
-## 17. Rejection and resubmission
+## 15. Rejection and resubmission
 
 Most papers at top venues are rejected. Rejection at a 20%-acceptance venue is the modal outcome, not a verdict on you.
 
@@ -669,7 +600,7 @@ Most papers at top venues are rejected. Rejection at a 20%-acceptance venue is t
 
 ---
 
-## 18. Ethics, authorship, and disclosure
+## 16. Ethics, authorship, and disclosure
 
 - **Human subjects** require IRB or equivalent approval *before* data collection. Retroactive approval generally does not exist.
 - **Security research** requires responsible disclosure: notify affected vendors, respect embargo periods, and describe your disclosure process in the paper. Many security venues require an ethics section.
@@ -681,59 +612,6 @@ Most papers at top venues are rejected. Rejection at a 20%-acceptance venue is t
 
 ---
 
-## 19. Failure modes to avoid
-
-**Structural**
-- The contribution is not stated until page 4.
-- The paper describes what was built but never says why it is hard.
-- Related work is an annotated bibliography.
-- Sections exist because the template has them, not because they carry weight.
-
-**Evaluation**
-- Weak or untuned baselines.
-- Single-run results, no variance.
-- No ablations for a multi-component system.
-- Only favorable results reported.
-- Overheads unmeasured or unmentioned.
-- Benchmarks chosen after seeing which ones the method wins on.
-
-**Writing**
-- Vague quantities: "much better," "significantly faster."
-- Terminology that drifts across sections.
-- Figures whose point is never stated.
-- An abstract with no numbers.
-- Undefined notation.
-
-**Process**
-- Missing the abstract-registration deadline.
-- Writing the paper in the last week.
-- Discovering the page limit at D−1.
-- Breaking anonymity through a GitHub link or PDF metadata.
-- Not having anyone outside the project read it before submission.
-
----
-
-## 20. Further reading
-
-Talks and essays widely used in CS graduate training:
-
-- **Simon Peyton Jones**, *How to Write a Great Research Paper* — a talk and slide deck; the standard starting point in CS. Also his *How to Give a Great Research Talk*.
-- **Justin Zobel**, *Writing for Computer Science* (Springer) — the closest thing to a field-standard textbook.
-- **Mensh & Kording**, *Ten Simple Rules for Structuring Papers* (PLOS Computational Biology, 2017) — short, free, and heavily cited; the "context-content-conclusion" framing is genuinely useful.
-- **Jennifer Widom**, *Tips for Writing Technical Papers* — a concise, well-known web guide from Stanford.
-- **Roy Levin & David Redell**, *An Evaluation of the Ninth SOSP Submissions, or How (and How Not) to Write a Good Systems Paper* — classic, and still accurate about systems papers.
-- **William Zinsser**, *On Writing Well* — general nonfiction craft; the chapters on clutter apply directly.
-- **Joseph Williams**, *Style: Lessons in Clarity and Grace* — the best book on sentence-level revision.
-- **Claire Le Goues et al.**, and various SIGSOFT resources on empirical methods, for software engineering papers.
-
-Practical resources:
-
-- **DBLP** (dblp.org) — authoritative BibTeX for CS venues.
-- **Overleaf template gallery** — venue templates, though always verify against the venue's own site.
-- **Papers With Code**, **Zenodo** — artifact hosting and discovery.
-- Your venue's own author guidelines and reviewer guidelines — reading the *reviewer* guidelines tells you exactly what your paper will be scored on.
-
----
 
 ## The shortest version
 
