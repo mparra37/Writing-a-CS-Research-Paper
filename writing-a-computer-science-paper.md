@@ -19,13 +19,9 @@ A practical, end-to-end guide: from finding a contribution to surviving the rebu
 11. [The LaTeX toolchain](#11-the-latex-toolchain)
 12. [Reproducibility and artifacts](#12-reproducibility-and-artifacts)
 13. [Anonymization for double-blind review](#13-anonymization-for-double-blind-review)
-14. [Working backwards from a deadline](#14-working-backwards-from-a-deadline)
-15. [Submission checklist](#15-submission-checklist)
-16. [Reviews and rebuttals](#16-reviews-and-rebuttals)
-17. [Rejection and resubmission](#17-rejection-and-resubmission)
-18. [Ethics, authorship, and disclosure](#18-ethics-authorship-and-disclosure)
-19. [Failure modes to avoid](#19-failure-modes-to-avoid)
-20. [Further reading](#20-further-reading)
+14. [Reviews and rebuttals](#16-reviews-and-rebuttals)
+15. [Rejection and resubmission](#17-rejection-and-resubmission)
+16. [Ethics, authorship, and disclosure](#18-ethics-authorship-and-disclosure)
 
 ---
 
