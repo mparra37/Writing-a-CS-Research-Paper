@@ -17,11 +17,8 @@ A practical, end-to-end guide: from finding a contribution to surviving the rebu
 9. [Math, notation, algorithms](#9-math-notation-algorithms)
 10. [Sentence-level writing](#10-sentence-level-writing)
 11. [The LaTeX toolchain](#11-the-latex-toolchain)
-12. [Reproducibility and artifacts](#12-reproducibility-and-artifacts)
-13. [Anonymization for double-blind review](#13-anonymization-for-double-blind-review)
-14. [Reviews and rebuttals](#16-reviews-and-rebuttals)
-15. [Rejection and resubmission](#17-rejection-and-resubmission)
-16. [Ethics, authorship, and disclosure](#18-ethics-authorship-and-disclosure)
+12. [Anonymization for double-blind review](#13-anonymization-for-double-blind-review)
+
 
 ---
 
@@ -159,19 +156,6 @@ ML reviewers want: fair baselines with tuned hyperparameters, multiple seeds wit
 
 Theory reviewers want: precise definitions, correct proofs, clear positioning against known bounds, and intuition before formalism. Give the reader the proof idea in prose before the formal argument.
 
-### Empirical software engineering / measurement paper
-
-```
-1. Introduction
-2. Background
-3. Research Questions            ← stated explicitly as RQ1, RQ2, ...
-4. Methodology                   ← data collection, sampling, coding process
-5. Results (organized by RQ)
-6. Discussion / Implications
-7. Threats to Validity           ← required; internal, external, construct
-8. Related Work
-9. Conclusion
-```
 
 ### HCI / user study paper
 
@@ -192,7 +176,7 @@ Requires IRB/ethics approval documentation, participant demographics, and approp
 
 ---
 
-## 5. Writing order: never front to back
+## 5. Writing order
 
 Recommended order:
 
@@ -319,7 +303,6 @@ Distinguish:
 
 Do not use this section to smuggle in excuses. State the limitation cleanly and, where possible, say what would be needed to address it.
 
-Empirical SE and HCI papers use a **Threats to Validity** section instead, conventionally split into internal (does your setup actually measure what you claim), external (does it generalize), and construct (are your metrics the right proxies for the concept) validity.
 
 ### Conclusion
 
@@ -336,9 +319,6 @@ Common problems:
 - Lowercased proper nouns in titles. Protect with braces: `title = {A Study of {Byzantine} Fault Tolerance in {Rust}}`.
 - Missing years, page numbers, DOIs.
 
-### Appendix
-
-Use for proofs, hyperparameter tables, additional experiments, survey instruments. Reviewers are generally not obligated to read it — so nothing load-bearing goes there. If a claim in the main text depends on it, the main text must summarize the essential content.
 
 ---
 
@@ -362,14 +342,6 @@ Our evaluation answers the following questions:
 
 Q5 matters more than people expect. A paper that characterizes its own failure regime reads as honest science; one that reports only wins reads as marketing.
 
-### Baselines
-
-The single most common reviewer complaint is an unfair or missing baseline.
-
-- Compare against the **strongest** prior method, not the easiest to implement.
-- **Tune the baseline** with the same effort you tuned your method. Reviewers can tell when you did not.
-- Include a naive baseline too, so readers can calibrate the scale of improvement.
-- If you cannot run a competitor (no code, different platform), say so explicitly and compare against numbers reported in their paper, noting the caveat.
 
 ### Workloads and datasets
 
@@ -377,14 +349,10 @@ The single most common reviewer complaint is an unfair or missing baseline.
 - Justify your choices. Why these datasets? Reviewers assume unstated selection means cherry-picking.
 - Report dataset sizes, characteristics, preprocessing, and splits.
 
-### Ablations
-
-For every component you claim contributes, remove it and measure. A design with five mechanisms and no ablation invites "how do we know the gains don't come entirely from mechanism 2?"
 
 ### Statistical hygiene
 
 - **Multiple runs.** A single run is not a result. Report mean with standard deviation or confidence intervals, and state the number of trials.
-- **Multiple seeds** for anything stochastic (ML especially). Reporting the best seed is misconduct-adjacent; report the distribution.
 - **Percentiles for latency**, not just means. p50, p99, p99.9. Tail latency is often the whole story.
 - **Error bars on every plot** where variance exists. Say in the caption what they represent.
 - If you run significance tests, name the test, check its assumptions, and correct for multiple comparisons if you ran many.
@@ -402,8 +370,6 @@ Enough for someone else to reproduce it:
 
 - Report where you lose, not just where you win.
 - Report overheads — memory, CPU, energy, storage, latency added.
-- Do not use a log scale to hide small differences, or a truncated y-axis to exaggerate them.
-- Do not report a geometric mean speedup that is driven entirely by one outlier benchmark without saying so.
 
 ---
 
@@ -413,7 +379,6 @@ Reviewers look at figures before they read text. Treat them as first-class.
 
 **Every figure needs a self-contained caption.** A reader flipping through should understand the figure without the body text. Captions go *below* figures, *above* tables, by convention.
 
-**Make the takeaway explicit.** Either in the caption ("Throughput scales linearly to 32 cores, then plateaus due to lock contention") or as a bolded lead-in sentence in the text. Never leave the reader to infer what a plot is for.
 
 **Practical rules:**
 
@@ -423,7 +388,6 @@ Reviewers look at figures before they read text. Treat them as first-class.
 - Label axes with units. Always.
 - Do not use 3D bar charts, pie charts, or chartjunk.
 - Keep the same color for the same system across all figures in the paper.
-- Tables: use `booktabs` in LaTeX (`\toprule`, `\midrule`, `\bottomrule`); avoid vertical rules. Right-align numbers, fix decimal places, bold the best result per row or column.
 
 **A useful discipline:** if a figure and a paragraph say the same thing, delete the paragraph, or cut the figure. Page limits are tight.
 
@@ -436,8 +400,7 @@ Reviewers look at figures before they read text. Treat them as first-class.
 - **Prose before formalism.** Give the intuition, then the theorem. A reader who understands the idea can follow the proof; the reverse rarely works.
 - **Number equations you refer to**, and only those.
 - **Theorem environments:** state the theorem formally, and if the proof is long, give a proof sketch in the body with the full proof in an appendix.
-- **Algorithms:** use `algorithm2e` or `algorithmicx`. Include a line-by-line explanation in prose. State complexity explicitly.
-- Punctuate equations as part of the sentence — they are grammatical objects, and displayed equations usually end in a comma or period.
+
 
 ---
 
@@ -465,11 +428,7 @@ Reviewers look at figures before they read text. Treat them as first-class.
 - Say "reduces p99 latency from 40 ms to 12 ms," not "improves performance."
 - Avoid "novel," "state-of-the-art," and "significantly outperforms" as unsupported adjectives. Show it instead.
 
-**Consistency:** pick one term per concept and never vary it for stylistic variety. If it is a "shard," it is never a "partition," a "segment," or a "chunk." Elegant variation is good in prose and poison in technical writing.
 
-**Cross-references:** use `\cref` from the `cleveref` package so you write `\cref{fig:throughput}` and it renders "Figure 3" automatically and consistently.
-
-**Read it aloud.** Or use text-to-speech. You will hear problems your eye skips over.
 
 ---
 
@@ -477,57 +436,19 @@ Reviewers look at figures before they read text. Treat them as first-class.
 
 CS papers are written in LaTeX. Word is accepted at some venues; you will fight it.
 
-**Editors:** Overleaf is the standard for collaboration (real-time editing, version history, template gallery). Locally: TeX Live plus VS Code with the LaTeX Workshop extension, and `latexmk` for builds. If you work locally, use Git — and set `--word-diff` or a `.gitattributes` with a `tex` diff driver so diffs are readable.
+**Editors:** Overleaf is the standard for collaboration (real-time editing, version history, template gallery). 
 
-**Templates:** download from the venue, never from a third party. `acmart` for ACM venues (with the right `\documentclass` option — `sigconf`, `acmsmall`, etc.), `IEEEtran` for IEEE, plus venue-specific styles for USENIX, NeurIPS, ICML, and others. Do not modify margins, font size, or spacing to fit — this is checked and is grounds for desk rejection.
+**Templates:** download from the venue, never from a third party. `acmart` for ACM venues (with the right `\documentclass` option — `sigconf`, `acmsmall`, etc.). Do not modify margins, font size, or spacing to fit.
 
-**Packages worth using:**
 
-| Package | Purpose |
-|---|---|
-| `booktabs` | Professional tables |
-| `cleveref` | Consistent, automatic cross-references |
-| `siunitx` | Correctly formatted numbers and units |
-| `algorithm2e` | Algorithm pseudocode |
-| `listings` or `minted` | Source code |
-| `pgfplots` / `tikz` | Plots and diagrams generated from LaTeX |
-| `microtype` | Subtle typographic improvements; genuinely helps fit |
-| `subcaption` | Subfigures |
-| `hyperref` | Clickable links and PDF metadata (load last, usually) |
-| `xcolor` + `todonotes` | Draft comments and margin notes |
 
 **Bibliography:** BibTeX or, preferably, BibLaTeX + Biber. Pull entries from DBLP. Keep one `.bib` file. Use consistent key naming (`author-year-shortword`).
 
-**Workflow habits:**
 
-- **One sentence per line** in your `.tex` source. This makes version-control diffs meaningful.
-- Keep figures in a `figures/` directory, generated by scripts committed alongside — so a data change regenerates the plot.
-- Use `\newcommand` for repeated terms and system names: `\newcommand{\sysname}{Segcache\xspace}`. Renaming your system later becomes one edit.
-- Comment out rather than delete during revisions, until the deadline passes.
-
-**Fitting the page limit:** first cut content, not spacing. Then: tighten prose, shrink figures, move material to appendix, use `\vspace` sparingly, enable `microtype`. Do not shrink the bibliography font or margins — reviewers and chairs notice.
 
 ---
 
-## 12. Reproducibility and artifacts
-
-Many venues now run **Artifact Evaluation** — a separate committee checks whether your code runs and reproduces your claims, awarding badges (Available, Functional, Reproduced). It is usually optional but increasingly expected, and it materially helps your paper's citation count and credibility.
-
-**Prepare from the start, not after acceptance:**
-
-- Keep code in version control with a tagged commit corresponding to the submitted results.
-- Pin dependencies exactly (`requirements.txt` with versions, `Cargo.lock`, container image).
-- Ship a container (Docker/Podman) or a Nix/Guix environment.
-- Write a `README` with: system requirements, install steps, a smoke test that runs in minutes, and per-claim instructions mapping paper figures to commands.
-- Include the scripts that generate every figure from raw data, and the raw data if licensing permits.
-- Deposit for permanence: Zenodo or figshare gives you a DOI; a GitHub URL alone is not archival.
-- Document hardware requirements honestly. If a result needs 8×A100 for a week, say so and provide a scaled-down version reviewers can actually run.
-
-**Anonymity:** during double-blind review, host artifacts anonymously (anonymous GitHub proxies, or an anonymized Zenodo deposit).
-
----
-
-## 13. Anonymization for double-blind review
+## 12. Anonymization for double-blind review
 
 Get this wrong and the paper is desk-rejected.
 
@@ -539,84 +460,4 @@ Get this wrong and the paper is desk-rejected.
 - Avoid "our company's production cluster" if that identifies the company — describe it generically and note the constraint.
 - Check the venue's policy on preprints. Some allow arXiv posting before review; some restrict publicity during review. Read the CFP.
 
----
 
-
-## 14. Reviews and rebuttals
-
-### Reading reviews
-
-Wait 24 hours before responding to anything. The first reaction to a harsh review is never the useful one.
-
-Then sort each point into:
-
-1. **Factual errors by the reviewer** — they missed something that is in the paper. Correct politely with a section pointer, and note that this means the paper failed to communicate it clearly.
-2. **Fair criticism you can address in the rebuttal** — a missing experiment you can run in the window, a clarification you can give.
-3. **Fair criticism you cannot address now** — acknowledge honestly and commit to the camera-ready or future work.
-4. **Requests out of scope** — explain why, respectfully, in terms of the paper's stated goals.
-
-If three reviewers independently misunderstood the same thing, the reviewers are not the problem. Your writing is.
-
-### Writing the rebuttal
-
-Space is tight (often 500–1000 words). Priorities:
-
-- **Lead with the most consequential objection**, not the easiest one.
-- **Address common concerns once**, in a shared section, then respond per-reviewer.
-- **Give data.** "We ran the requested comparison against X; our method achieves 1.8× lower latency (numbers in table below)" is worth ten paragraphs of argument.
-- **Concede gracefully where you should.** "R2 is right that our claim about generalization overreaches; we will restrict it to the tested regime." Reviewers respond well to authors who update.
-- **Be specific about commitments.** "We will add §6.7 reporting memory overhead" beats "we will clarify this."
-- **Never be sarcastic, defensive, or condescending.** It has never once helped.
-- Do not promise experiments you cannot deliver by camera-ready.
-
-### If accepted
-
-- Address every reviewer request in the camera-ready, or explain in the response why not.
-- De-anonymize, add acknowledgments and funding.
-- Release the artifact.
-- Prepare the talk and, increasingly, a short video and a poster.
-
----
-
-## 15. Rejection and resubmission
-
-Most papers at top venues are rejected. Rejection at a 20%-acceptance venue is the modal outcome, not a verdict on you.
-
-**A working process:**
-
-1. Wait a week.
-2. Extract every substantive criticism into a list, stripped of tone.
-3. Sort into: things you can fix by writing, things you can fix by experiments, things that are fundamental.
-4. If the fundamental list is empty, revise and resubmit — often to the next venue in the same tier, or one tier down.
-5. If it is not empty, decide whether to do the work or reframe the contribution.
-
-**Do not** resubmit unchanged to the next deadline. Reviewer pools overlap, some venues share review data, and it wastes everyone's time including yours.
-
-**Do** keep a document mapping each reviewer criticism to what you changed. If you resubmit to a venue with a revision-tracking process, you will need it; and it keeps you honest.
-
----
-
-## 16. Ethics, authorship, and disclosure
-
-- **Human subjects** require IRB or equivalent approval *before* data collection. Retroactive approval generally does not exist.
-- **Security research** requires responsible disclosure: notify affected vendors, respect embargo periods, and describe your disclosure process in the paper. Many security venues require an ethics section.
-- **Data** must be used within its license and terms of service. Scraping in violation of ToS is an ethics-committee issue at several venues now.
-- **Dual use:** consider and discuss potential misuse where relevant. Some venues require a broader impacts statement.
-- **Authorship** should reflect intellectual contribution. Discuss order early, in writing, before the crunch. CS conventions vary: many subfields use contribution order with the advisor last; some use alphabetical (common in theory).
-- **Plagiarism and self-plagiarism.** Reusing your own text from a prior paper without citation is a real violation at most venues. Simultaneous submission to two venues is prohibited essentially everywhere.
-- **LLM use** is now governed by explicit venue policies. Most allow AI assistance for writing and editing but require that authors take full responsibility for all content, and prohibit listing an AI as an author. Some require disclosure. Read your venue's policy — they change yearly.
-
----
-
-
-## The shortest version
-
-If you remember nothing else:
-
-1. Have one clear claim, and know what evidence supports it before you run anything.
-2. Write the figures first and the introduction last.
-3. Tune your baselines as hard as you tuned your method.
-4. Report where you lose.
-5. Give the reader the insight in plain language before the formalism.
-6. Have someone outside the project read it two weeks before the deadline.
-7. Submit a day early.
